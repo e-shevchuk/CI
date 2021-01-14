@@ -1,0 +1,35 @@
+version: "3.3"
+
+#Docker Networks
+networks:
+  app-network-mima:
+    driver: bridge
+
+
+services: 
+
+# Django
+    mima_django:
+        image: eugeneshevchuk/mima_django
+        restart: unless-stopped
+        ports:
+            - ${jupyter_port}:8888
+            - ${django_port}:8080
+        volumes:
+            - ./djangoreactproject:/usr/src/djangoreactproject/
+        networks:
+            - app-network-mima
+
+# React
+    mima_react:
+        image: mima_react
+        restart: unless-stopped
+        tty: true
+        stdin_open: true
+        ports:
+            - ${react_port}:3000
+        volumes:
+            - ./djangoreactproject/frontend:/usr/src/frontend/
+        networks:
+            - app-network-mima
+

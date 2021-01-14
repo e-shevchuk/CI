@@ -1,0 +1,16 @@
+FROM ubuntu
+EXPOSE 8888
+WORKDIR /usr/src/frontend
+RUN echo '{"location": "docker_container"}' > ../exec_env_info.json
+RUN apt-get update
+RUN apt-get install nano -y
+RUN apt-get install vim -y
+RUN apt-get install telnet -y
+RUN apt-get install iputils-ping -y
+RUN apt-get install tree
+RUN apt update
+RUN CI=True
+RUN apt install -y nodejs
+RUN apt install -y npm
+RUN npm install -g npx
+CMD ["npm", "run", "start"]

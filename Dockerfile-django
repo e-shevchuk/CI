@@ -1,0 +1,32 @@
+FROM ubuntu
+EXPOSE 8888
+WORKDIR /usr/src/djangoreactproject
+COPY ./djangoreactproject/requirements.txt ./requirements.txt
+RUN echo '{"location": "docker_container"}' > ../exec_env_info.json
+RUN apt-get update
+RUN apt-get install nano -y
+RUN apt-get install vim -y
+RUN apt-get install telnet -y
+RUN apt-get install iputils-ping -y
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+RUN apt-get install python3-dev -y
+RUN apt update
+RUN pip3 install -r ./requirements.txt
+RUN jt -t grade3 -T
+RUN jupyter nbextension enable cell_filter/cell_filter
+RUN jupyter nbextension enable contrib_nbextensions_help_item/main
+RUN jupyter nbextension enable freeze/main
+RUN jupyter nbextension enable keyboard_shortcut_editor/main
+RUN jupyter nbextension enable nbextensions_configurator/config_menu/main
+RUN jupyter nbextension enable python-markdown/main
+RUN jupyter nbextension enable hide_input_all/main
+RUN jupyter nbextension enable hide_input/main
+RUN jupyter nbextension enable skip-traceback/main
+RUN jupyter nbextension enable splitcell/splitcell
+RUN jupyter nbextension enable ruler/main
+RUN jupyter nbextension enable jupyter-js-widgets/extension
+RUN jupyter nbextension enable nbextensions_configurator/tree_tab/main
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextension enable --py widgetsnbextension
+CMD ["jupyter", "notebook", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
