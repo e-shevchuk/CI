@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'customers'
 ]
 
 MIDDLEWARE = [
@@ -123,7 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # CORS
+
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-       'localhost:3000',
-)
+
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'https://localhost:3000',)
+
