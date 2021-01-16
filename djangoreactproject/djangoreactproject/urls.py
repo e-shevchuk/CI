@@ -20,6 +20,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'^api/customers/$', views.customers_list),
-    path(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
+    url(r'^api/customers/$', views.customers_list),
+    url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
 ]

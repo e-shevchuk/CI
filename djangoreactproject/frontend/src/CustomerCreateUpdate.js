@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CustomersService from './CustomersService';
 
-const customerService = new CustomersService();
+const customersService = new CustomersService();
 
 
 class CustomerCreateUpdate extends Component {
